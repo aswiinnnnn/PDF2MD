@@ -1,0 +1,1 @@
+Transcribe this page image according to the system rules. This is page {page_num} of the document. If you detect any images/diagrams/figures, use sequential placeholders starting from [IMAGE_PLACEHOLDER_{start_placeholder_idx}].
