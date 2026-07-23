@@ -19,23 +19,79 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
     }
   }, [logs]);
 
-  const handleFileChange = (e) => {
+  useEffect(() => {
+    const fetchStatus = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/workspace-status');
+        if (response.ok) {
+          const data = await response.json();
+          const loadedQueue = data.queue.map(item => ({
+            id: Math.random().toString(36).substring(7),
+            file: { name: item.name },
+            status: item.status,
+            progress: { page: 0, total: 0 },
+            error: null
+          }));
+          setQueue(loadedQueue);
+          setLogs(data.logs || []);
+        }
+      } catch (err) {
+        console.error('Failed to load workspace status:', err);
+      }
+    };
+    fetchStatus();
+  }, []);
+
+  const handleFileChange = async (e) => {
     if (e.target.files) {
       const selectedFiles = Array.from(e.target.files);
-      const newItems = selectedFiles
-        .filter((file) => file.type === 'application/pdf' || file.name.endsWith('.pdf'))
-        .map((file) => ({
-          id: Math.random().toString(36).substring(7),
-          file,
-          status: 'pending',
-          progress: { page: 0, total: 0 },
-          error: null,
-        }));
+      const allowedFiles = selectedFiles.filter(
+        (file) => file.type === 'application/pdf' || file.name.endsWith('.pdf')
+      );
 
-      if (newItems.length > 0) {
-        setQueue((prev) => [...prev, ...newItems]);
+      if (allowedFiles.length > 0) {
         setError(null);
-        addLog(`Added ${newItems.length} PDF(s) to the queue.`);
+        for (const file of allowedFiles) {
+          const itemId = Math.random().toString(36).substring(7);
+          const newItem = {
+            id: itemId,
+            file,
+            status: 'uploading',
+            progress: { page: 0, total: 0 },
+            error: null,
+          };
+          setQueue((prev) => [...prev, newItem]);
+          addLog(`Uploading ${file.name} to backend...`);
+
+          const formData = new FormData();
+          formData.append('file', file);
+
+          try {
+            const res = await fetch('http://localhost:8000/api/upload-pdf', {
+              method: 'POST',
+              body: formData,
+            });
+            if (!res.ok) {
+              const errText = await res.text();
+              throw new Error(errText || 'Upload failed');
+            }
+            setQueue((prev) =>
+              prev.map((item) =>
+                item.id === itemId ? { ...item, status: 'pending' } : item
+              )
+            );
+            addLog(`Uploaded ${file.name} successfully. Ready for processing.`);
+          } catch (err) {
+            setQueue((prev) =>
+              prev.map((item) =>
+                item.id === itemId
+                  ? { ...item, status: 'error', error: err.message }
+                  : item
+              )
+            );
+            addLog(`Failed to upload ${file.name}: ${err.message}`, 'error');
+          }
+        }
       } else {
         setError('Please select valid PDF files.');
       }
@@ -46,20 +102,45 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
     setQueue((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const clearQueue = () => {
-    setQueue([]);
-    setLogs([]);
-    setError(null);
-    setSuccess(false);
-    setProgress({ page: 0, total: 0 });
-    setCurrentFileIdx(null);
-    setDocuments({});
-    setActiveDocName('');
-    addLog('OCR workspace cleared.');
+  const clearQueue = async () => {
+    if (loading) return;
+    if (window.confirm("Are you sure you want to clear all documents from both backend and frontend?")) {
+      try {
+        const res = await fetch('http://localhost:8000/api/clear-data', {
+          method: 'POST',
+        });
+        if (res.ok) {
+          setQueue([]);
+          setLogs([]);
+          setError(null);
+          setSuccess(false);
+          setProgress({ page: 0, total: 0 });
+          setCurrentFileIdx(null);
+          setDocuments({});
+          setActiveDocName('');
+          addLog('Workspace cleared on both backend and frontend.');
+        } else {
+          throw new Error('Failed to clear backend workspace data.');
+        }
+      } catch (err) {
+        setError(err.message);
+        addLog(`Clear error: ${err.message}`, 'error');
+      }
+    }
   };
 
-  const addLog = (message, type = 'info') => {
-    setLogs((prev) => [...prev, { timestamp: new Date().toLocaleTimeString(), message, type }]);
+  const addLog = async (message, type = 'info') => {
+    const timestamp = new Date().toLocaleTimeString();
+    setLogs((prev) => [...prev, { timestamp, message, type }]);
+    try {
+      await fetch('http://localhost:8000/api/save-log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, type, timestamp })
+      });
+    } catch (err) {
+      console.error('Failed to save log to backend:', err);
+    }
   };
 
   const processQueue = async () => {
@@ -73,13 +154,21 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
     addLog(`Starting queue transcription for ${queue.length} document(s)...`);
     addLog(`DPI configured to: ${dpi}`);
 
-    // Update status of all items in queue to pending
-    setQueue((prev) => prev.map((item) => ({ ...item, status: 'pending', error: null })));
+    // Update status of all pending items
+    setQueue((prev) =>
+      prev.map((item) =>
+        item.status === 'pending' ? { ...item, error: null } : item
+      )
+    );
 
     let completedCount = 0;
 
     for (let i = 0; i < queue.length; i++) {
       const currentItem = queue[i];
+      if (currentItem.status === 'success') {
+        completedCount++;
+        continue;
+      }
       setCurrentFileIdx(i);
       
       setQueue((prev) =>
@@ -89,7 +178,7 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
       addLog(`[File ${i + 1}/${queue.length}] Starting OCR for: ${currentItem.file.name}`, 'warning');
 
       const formData = new FormData();
-      formData.append('file', currentItem.file);
+      formData.append('filename', currentItem.file.name);
       formData.append('dpi', dpi.toString());
 
       try {
@@ -109,7 +198,12 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
 
         addLog(`Connected to OCR engine for ${currentItem.file.name}...`);
 
-        let accumulatedMarkdown = '';
+        // Clear existing markdown for this file to start fresh
+        const filename = currentItem.file.name;
+        setDocuments((prevDocs) => ({
+          ...prevDocs,
+          [filename]: { markdown: '', imageMappings: {} }
+        }));
 
         while (true) {
           const { value, done } = await reader.read();
@@ -122,30 +216,27 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
           for (const line of lines) {
             const trimmedLine = line.trim();
             if (trimmedLine.startsWith('data: ')) {
-              console.log("Raw SSE Line:", trimmedLine);
               let data = null;
               try {
                 data = JSON.parse(trimmedLine.slice(6));
-                console.log("Parsed SSE Data:", data);
               } catch (err) {
                 console.error('Failed to parse SSE line:', line, err);
               }
               
               if (data) {
                 if (data.status === 'processing') {
-                  setProgress({ page: data.page, total: data.total });
-                  setQueue((prev) =>
-                    prev.map((item, idx) =>
-                      idx === i ? { ...item, progress: { page: data.page, total: data.total } } : item
-                    )
-                  );
+                   setProgress({ page: data.page, total: data.total });
+                   setQueue((prev) =>
+                     prev.map((item, idx) =>
+                       idx === i ? { ...item, progress: { page: data.page, total: data.total } } : item
+                     )
+                   );
                 } else if (data.status === 'success') {
                   addLog(`Transcribed page ${data.page} of ${data.total} for ${currentItem.file.name}...`, 'info');
                   
-                  const filename = currentItem.file.name;
                   setDocuments((prevDocs) => {
                     const doc = prevDocs[filename] || { markdown: '', imageMappings: {} };
-                    const separator = doc.markdown ? '\n\n' : '';
+                    const separator = doc.markdown ? '\n\n---\n\n' : '';
                     const updatedDocs = {
                       ...prevDocs,
                       [filename]: {
@@ -153,7 +244,6 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
                         markdown: doc.markdown + separator + data.content
                       }
                     };
-                    console.log("Updated Documents State:", updatedDocs);
                     return updatedDocs;
                   });
                   setActiveDocName((currentActive) => currentActive || filename);
@@ -166,8 +256,6 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
         }
 
         // Validate that we actually received some content before marking as successful
-        const filename = currentItem.file.name;
-        // Accessing the state in-flight might return the old state, so we check using a callback or let it run
         setDocuments((currentDocs) => {
           const doc = currentDocs[filename];
           if (!doc || !doc.markdown || doc.markdown.trim() === "") {
@@ -190,7 +278,6 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
         setQueue((prev) =>
           prev.map((item, idx) => (idx === i ? { ...item, status: 'error', error: err.message } : item))
         );
-        // We continue to the next file even if one fails
       }
     }
 
@@ -288,6 +375,9 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
+                      {item.status === 'uploading' && (
+                        <span className="text-[9px] font-bold text-indigo-500 animate-pulse uppercase">Uploading</span>
+                      )}
                       {item.status === 'pending' && !loading && (
                         <button
                           onClick={() => removeQueueItem(item.id)}

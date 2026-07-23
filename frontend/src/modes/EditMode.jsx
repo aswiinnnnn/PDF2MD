@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { FileText, Image as ImageIcon, Upload, Trash2, Maximize, FileDown, AlertCircle } from 'lucide-react';
@@ -6,11 +6,42 @@ import { FileText, Image as ImageIcon, Upload, Trash2, Maximize, FileDown, Alert
 function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) {
   const [exporting, setExporting] = useState(false);
   const [error, setError] = useState(null);
+  const [pdfFilename, setPdfFilename] = useState('');
 
   const docNames = Object.keys(documents);
   const currentDoc = documents[activeDocName] || { markdown: '', imageMappings: {} };
   const markdown = currentDoc.markdown;
   const imageMappings = currentDoc.imageMappings;
+
+  useEffect(() => {
+    if (activeDocName) {
+      setPdfFilename(activeDocName.replace('.pdf', '_clean.pdf'));
+    } else {
+      setPdfFilename('');
+    }
+  }, [activeDocName]);
+
+  useEffect(() => {
+    if (!activeDocName || !markdown) return;
+    
+    const delayDebounce = setTimeout(async () => {
+      try {
+        await fetch('http://localhost:8000/api/save-document', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            filename: activeDocName,
+            markdown,
+            image_mappings: imageMappings
+          })
+        });
+      } catch (err) {
+        console.error('Failed to auto-save document:', err);
+      }
+    }, 1000);
+    
+    return () => clearTimeout(delayDebounce);
+  }, [markdown, imageMappings, activeDocName]);
 
   const setMarkdown = (newMarkdown) => {
     if (!activeDocName) return;
@@ -141,7 +172,8 @@ function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) 
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           markdown,
-          image_mappings: imageMappings
+          image_mappings: imageMappings,
+          filename: pdfFilename || 'published_material.pdf'
         })
       });
 
@@ -155,7 +187,7 @@ function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) 
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', 'published_material.pdf');
+      link.setAttribute('download', pdfFilename || 'published_material.pdf');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -275,15 +307,27 @@ function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) 
         <div className="flex items-center gap-2">
           {activeDocName && (
             <button
-              onClick={() => {
-                if (window.confirm(`Are you sure you want to clear the contents and images of "${activeDocName}"?`)) {
-                  setMarkdown('');
-                  setImageMappings({});
+              onClick={async () => {
+                if (window.confirm("Are you sure you want to clear the entire workspace (all documents, images, and raw PDFs) from both frontend and backend?")) {
+                  try {
+                    const res = await fetch('http://localhost:8000/api/clear-data', {
+                      method: 'POST'
+                    });
+                    if (res.ok) {
+                      setDocuments({});
+                      setActiveDocName('');
+                      alert('Workspace cleared.');
+                    } else {
+                      throw new Error('Failed to clear backend workspace data.');
+                    }
+                  } catch (err) {
+                    alert('Clear error: ' + err.message);
+                  }
                 }
               }}
               className="bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-xs font-semibold py-2 px-4 rounded-lg transition-colors"
             >
-              Clear Current Doc
+              Clear Workspace
             </button>
           )}
           <label className="bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-semibold py-2 px-4 rounded-lg transition-colors cursor-pointer select-none text-center">
@@ -319,6 +363,15 @@ function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) 
           >
             Download Markdown (.md)
           </button>
+          {activeDocName && (
+            <input
+              type="text"
+              value={pdfFilename}
+              onChange={(e) => setPdfFilename(e.target.value)}
+              placeholder="PDF Filename"
+              className="bg-slate-50 border border-slate-200 text-slate-850 p-2 rounded-lg text-xs font-bold outline-none focus:border-slate-350 w-48"
+            />
+          )}
           <button
             onClick={triggerPDFExport}
             disabled={exporting || !markdown}
@@ -361,11 +414,17 @@ function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) 
               return (
                 <div 
                   key={pageIdx} 
-                  className="bg-white text-slate-800 w-full max-w-[210mm] min-h-[297mm] h-auto shrink-0 p-10 md:p-12 shadow-2xl border border-slate-200 box-border font-sans leading-relaxed text-sm select-text text-left relative"
+                  className="bg-white text-slate-800 w-full max-w-[210mm] min-h-[297mm] h-auto shrink-0 pt-14 pb-14 px-10 md:px-12 shadow-2xl border border-slate-200 box-border font-sans leading-relaxed text-sm select-text text-left relative"
                 >
-                  {/* Page Indicator */}
-                  <div className="absolute top-3 right-4 text-[10px] text-slate-400 font-sans select-none no-print">
-                    Page {pageIdx + 1}
+                  {/* Page Header (Matching printed PDF) */}
+                  <div className="absolute top-4 left-10 right-10 flex justify-between text-[10px] text-slate-400 font-sans select-none no-print border-b border-slate-100 pb-1">
+                    <span className="font-semibold text-slate-500">RGU HUB</span>
+                    <a href="https://rguhub.site" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-indigo-600 hover:underline cursor-pointer">Visit rguhub.site</a>
+                  </div>
+
+                  {/* Page Footer (Matching printed PDF) */}
+                  <div className="absolute bottom-4 left-0 right-0 flex justify-center text-[10px] text-slate-400 font-sans select-none no-print">
+                    <span>{pageIdx + 1}</span>
                   </div>
 
                   {/* CSS rules for nested markdown elements to match PDF exactly */}
@@ -399,11 +458,17 @@ function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) 
                       margin-bottom: 8pt;
                       color: #334155;
                     }
-                    .preview-container ul, .preview-container ol {
-                      margin-top: 0;
-                      margin-bottom: 10pt;
-                      padding-left: 20pt;
-                    }
+                     .preview-container ul {
+                       list-style-type: disc;
+                     }
+                     .preview-container ol {
+                       list-style-type: decimal;
+                     }
+                     .preview-container ul, .preview-container ol {
+                       margin-top: 0;
+                       margin-bottom: 10pt;
+                       padding-left: 20pt;
+                     }
                     .preview-container li {
                       margin-bottom: 4pt;
                       color: #334155;
@@ -463,7 +528,7 @@ function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) 
                                 li: createInteractiveComponent('li'),
                               }}
                             >
-                              {el.content}
+                              {el.content.replace(/<br\s*\/?>/gi, '  \n')}
                             </ReactMarkdown>
                           </div>
                         );

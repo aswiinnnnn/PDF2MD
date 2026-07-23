@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sparkles, FileEdit, Cpu } from 'lucide-react';
 import OCRMode from './modes/OCRMode';
 import EditMode from './modes/EditMode';
@@ -7,6 +7,25 @@ function App() {
   const [activeMode, setActiveMode] = useState('ocr'); // 'ocr' or 'edit'
   const [documents, setDocuments] = useState({}); // { filename: { markdown: '', imageMappings: {} } }
   const [activeDocName, setActiveDocName] = useState('');
+
+  useEffect(() => {
+    const fetchDocs = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/documents');
+        if (response.ok) {
+          const data = await response.json();
+          setDocuments(data);
+          const docNames = Object.keys(data);
+          if (docNames.length > 0) {
+            setActiveDocName(docNames[0]);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to fetch documents:', err);
+      }
+    };
+    fetchDocs();
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-row font-sans">
@@ -50,21 +69,22 @@ function App() {
 
       {/* Main Workspace Area */}
       <main className="flex-1 overflow-y-auto p-6 bg-slate-50 flex flex-col">
-        {activeMode === 'ocr' ? (
+        <div className={activeMode === 'ocr' ? 'flex flex-1 flex-col' : 'hidden'}>
           <OCRMode
             documents={documents}
             setDocuments={setDocuments}
             setActiveDocName={setActiveDocName}
             onComplete={() => setActiveMode('edit')}
           />
-        ) : (
+        </div>
+        <div className={activeMode === 'edit' ? 'flex flex-1 flex-col' : 'hidden'}>
           <EditMode
             documents={documents}
             setDocuments={setDocuments}
             activeDocName={activeDocName}
             setActiveDocName={setActiveDocName}
           />
-        )}
+        </div>
       </main>
     </div>
   );

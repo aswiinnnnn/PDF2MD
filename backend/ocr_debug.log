@@ -1,0 +1,296 @@
+[2026-07-23 22:08:56] --- Pipeline Start: C:\Users\ashwi\AppData\Local\Temp\pdf2md_pipeline\4a61bd9d-5d16-47fd-bdb7-947fd8eb0dee.pdf (DPI: 300) ---
+[2026-07-23 22:08:56] Initialization success. Pages count: 2
+[2026-07-23 22:08:56] Processing page 1/2
+[2026-07-23 22:08:57] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 22:09:00] Page 1 VLM error: All connection attempts failed
+[2026-07-23 22:09:00] Processing page 2/2
+[2026-07-23 22:09:01] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 22:09:01] --- Pipeline Start: C:\Users\ashwi\AppData\Local\Temp\pdf2md_pipeline\da5e9124-c910-4be7-9d14-5cd279b7779f.pdf (DPI: 300) ---
+[2026-07-23 22:09:01] Initialization success. Pages count: 2
+[2026-07-23 22:09:01] Processing page 1/2
+[2026-07-23 22:09:03] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 22:09:03] Page 2 VLM error: All connection attempts failed
+[2026-07-23 22:09:05] Page 1 VLM error: All connection attempts failed
+[2026-07-23 22:09:05] Processing page 2/2
+[2026-07-23 22:09:06] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 22:09:08] Page 2 VLM error: All connection attempts failed
+[2026-07-23 22:09:27] --- Pipeline Start: C:\Users\ashwi\AppData\Local\Temp\pdf2md_pipeline\bc070bb7-4cc2-4873-a4a0-22cc3f1569fd.pdf (DPI: 300) ---
+[2026-07-23 22:09:27] Initialization success. Pages count: 2
+[2026-07-23 22:09:27] Processing page 1/2
+[2026-07-23 22:09:29] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 22:12:19] Page 1 response status: 200
+[2026-07-23 22:12:19] Page 1 transcribed text length: 1621
+[2026-07-23 22:12:19] Processing page 2/2
+[2026-07-23 22:12:22] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 22:13:05] Page 2 response status: 200
+[2026-07-23 22:13:05] Page 2 transcribed text length: 1484
+[2026-07-23 22:13:05] --- Pipeline Start: C:\Users\ashwi\AppData\Local\Temp\pdf2md_pipeline\31a16b47-fff6-4d97-b5ba-e33ead13dead.pdf (DPI: 300) ---
+[2026-07-23 22:13:05] Initialization success. Pages count: 2
+[2026-07-23 22:13:05] Processing page 1/2
+[2026-07-23 22:13:06] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 22:13:38] Page 1 response status: 200
+[2026-07-23 22:13:38] Page 1 transcribed text length: 1621
+[2026-07-23 22:13:38] Processing page 2/2
+[2026-07-23 22:13:39] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 22:14:08] Page 2 response status: 200
+[2026-07-23 22:14:08] Page 2 transcribed text length: 1465
+[2026-07-23 22:36:11] --- Pipeline Start: C:\Users\ashwi\AppData\Local\Temp\pdf2md_pipeline\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-23 22:36:11] Initialization success. Pages count: 2
+[2026-07-23 22:36:11] Processing page 1/2
+[2026-07-23 22:36:12] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 22:36:43] Page 1 response status: 200
+[2026-07-23 22:36:43] Page 1 transcribed text length: 1621
+[2026-07-23 22:36:43] Processing page 2/2
+[2026-07-23 22:36:44] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 22:37:13] Page 2 response status: 200
+[2026-07-23 22:37:13] Page 2 transcribed text length: 1465
+[2026-07-23 22:37:13] --- Pipeline Start: C:\Users\ashwi\AppData\Local\Temp\pdf2md_pipeline\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-23 22:37:13] Initialization success. Pages count: 2
+[2026-07-23 22:37:13] Processing page 1/2
+[2026-07-23 22:37:14] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 22:37:44] Page 1 response status: 200
+[2026-07-23 22:37:44] Page 1 transcribed text length: 1621
+[2026-07-23 22:37:44] Processing page 2/2
+[2026-07-23 22:37:45] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 22:38:11] Page 2 response status: 200
+[2026-07-23 22:38:11] Page 2 transcribed text length: 1465
+[2026-07-23 22:55:24] --- Pipeline Start: C:\Users\ashwi\AppData\Local\Temp\pdf2md_pipeline\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-23 22:55:24] Initialization success. Pages count: 2
+[2026-07-23 22:55:24] Processing page 1/2
+[2026-07-23 22:55:25] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 22:56:03] Page 1 response status: 200
+[2026-07-23 22:56:03] Page 1 transcribed text length: 1621
+[2026-07-23 22:56:03] Processing page 2/2
+[2026-07-23 22:56:03] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 22:56:38] Page 2 response status: 200
+[2026-07-23 22:56:38] Page 2 transcribed text length: 1465
+[2026-07-23 22:56:38] --- Pipeline Start: C:\Users\ashwi\AppData\Local\Temp\pdf2md_pipeline\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-23 22:56:38] Initialization success. Pages count: 2
+[2026-07-23 22:56:38] Processing page 1/2
+[2026-07-23 22:56:39] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 22:57:16] Page 1 response status: 200
+[2026-07-23 22:57:16] Page 1 transcribed text length: 1621
+[2026-07-23 22:57:16] Processing page 2/2
+[2026-07-23 22:57:17] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 22:57:51] Page 2 response status: 200
+[2026-07-23 22:57:51] Page 2 transcribed text length: 1465
+[2026-07-23 23:15:35] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-23 23:15:35] Initialization success. Pages count: 2
+[2026-07-23 23:15:35] Processing page 1/2
+[2026-07-23 23:15:36] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 23:18:02] Page 1 response status: 200
+[2026-07-23 23:18:02] Page 1 transcribed text length: 1621
+[2026-07-23 23:18:02] Processing page 2/2
+[2026-07-23 23:18:03] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 23:19:44] Page 2 response status: 200
+[2026-07-23 23:19:44] Page 2 transcribed text length: 1743
+[2026-07-23 23:19:44] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-23 23:19:44] Initialization success. Pages count: 2
+[2026-07-23 23:19:44] Processing page 1/2
+[2026-07-23 23:19:45] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 23:21:21] Page 1 response status: 200
+[2026-07-23 23:21:21] Page 1 transcribed text length: 1620
+[2026-07-23 23:21:21] Processing page 2/2
+[2026-07-23 23:21:22] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 23:23:06] Page 2 response status: 200
+[2026-07-23 23:23:06] Page 2 transcribed text length: 1743
+[2026-07-23 23:26:56] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\published_material (6).pdf (DPI: 300) ---
+[2026-07-23 23:26:56] Initialization success. Pages count: 5
+[2026-07-23 23:26:56] Processing page 1/5
+[2026-07-23 23:26:56] Sending page 1 VLM request (image base64 len: 499368)
+[2026-07-23 23:28:54] Page 1 response status: 200
+[2026-07-23 23:28:54] Page 1 transcribed text length: 1475
+[2026-07-23 23:28:54] Processing page 2/5
+[2026-07-23 23:28:54] Sending page 2 VLM request (image base64 len: 538460)
+[2026-07-23 23:39:32] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2_clean.pdf (DPI: 300) ---
+[2026-07-23 23:39:32] Initialization success. Pages count: 3
+[2026-07-23 23:39:32] Processing page 1/3
+[2026-07-23 23:39:32] Sending page 1 VLM request (image base64 len: 468620)
+[2026-07-23 23:39:32] Page 1 response status: 400
+[2026-07-23 23:39:32] Page 1 VLM error: Client error '400 Bad Request' for url 'http://127.0.0.1:1234/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[2026-07-23 23:39:32] Processing page 2/3
+[2026-07-23 23:39:33] Sending page 2 VLM request (image base64 len: 155104)
+[2026-07-23 23:39:33] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-23 23:39:33] Initialization success. Pages count: 2
+[2026-07-23 23:39:33] Processing page 1/2
+[2026-07-23 23:39:34] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 23:39:34] Page 2 response status: 400
+[2026-07-23 23:39:34] Page 2 VLM error: Client error '400 Bad Request' for url 'http://127.0.0.1:1234/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[2026-07-23 23:39:34] Processing page 3/3
+[2026-07-23 23:39:34] Sending page 3 VLM request (image base64 len: 517360)
+[2026-07-23 23:39:34] Page 1 response status: 400
+[2026-07-23 23:39:34] Page 1 VLM error: Client error '400 Bad Request' for url 'http://127.0.0.1:1234/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[2026-07-23 23:39:34] Processing page 2/2
+[2026-07-23 23:39:35] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 23:39:35] Page 3 response status: 400
+[2026-07-23 23:39:35] Page 3 VLM error: Client error '400 Bad Request' for url 'http://127.0.0.1:1234/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[2026-07-23 23:39:35] Page 2 response status: 400
+[2026-07-23 23:39:35] Page 2 VLM error: Client error '400 Bad Request' for url 'http://127.0.0.1:1234/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[2026-07-23 23:39:53] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2_clean.pdf (DPI: 300) ---
+[2026-07-23 23:39:53] Initialization success. Pages count: 3
+[2026-07-23 23:39:53] Processing page 1/3
+[2026-07-23 23:39:53] Sending page 1 VLM request (image base64 len: 468620)
+[2026-07-23 23:39:53] Page 1 response status: 400
+[2026-07-23 23:39:53] Page 1 VLM error: Client error '400 Bad Request' for url 'http://127.0.0.1:1234/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[2026-07-23 23:39:53] Processing page 2/3
+[2026-07-23 23:39:54] Sending page 2 VLM request (image base64 len: 155104)
+[2026-07-23 23:39:54] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-23 23:39:54] Initialization success. Pages count: 2
+[2026-07-23 23:39:54] Processing page 1/2
+[2026-07-23 23:39:55] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 23:39:55] Page 2 response status: 400
+[2026-07-23 23:39:55] Page 2 VLM error: Client error '400 Bad Request' for url 'http://127.0.0.1:1234/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[2026-07-23 23:39:55] Processing page 3/3
+[2026-07-23 23:39:55] Sending page 3 VLM request (image base64 len: 517360)
+[2026-07-23 23:39:55] Page 1 response status: 400
+[2026-07-23 23:39:55] Page 1 VLM error: Client error '400 Bad Request' for url 'http://127.0.0.1:1234/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[2026-07-23 23:39:55] Processing page 2/2
+[2026-07-23 23:39:56] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 23:39:56] Page 3 response status: 400
+[2026-07-23 23:39:56] Page 3 VLM error: Client error '400 Bad Request' for url 'http://127.0.0.1:1234/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[2026-07-23 23:39:56] Page 2 response status: 400
+[2026-07-23 23:39:56] Page 2 VLM error: Client error '400 Bad Request' for url 'http://127.0.0.1:1234/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[2026-07-23 23:40:30] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2_clean.pdf (DPI: 300) ---
+[2026-07-23 23:40:30] Initialization success. Pages count: 3
+[2026-07-23 23:40:30] Processing page 1/3
+[2026-07-23 23:40:31] Sending page 1 VLM request (image base64 len: 468620)
+[2026-07-23 23:40:37] Page 1 response status: 200
+[2026-07-23 23:40:37] Page 1 transcribed text length: 1238
+[2026-07-23 23:40:37] Processing page 2/3
+[2026-07-23 23:40:37] Sending page 2 VLM request (image base64 len: 155104)
+[2026-07-23 23:40:39] Page 2 response status: 200
+[2026-07-23 23:40:39] Page 2 transcribed text length: 249
+[2026-07-23 23:40:39] Processing page 3/3
+[2026-07-23 23:40:40] Sending page 3 VLM request (image base64 len: 517360)
+[2026-07-23 23:40:46] Page 3 response status: 200
+[2026-07-23 23:40:46] Page 3 transcribed text length: 1487
+[2026-07-23 23:40:46] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-23 23:40:46] Initialization success. Pages count: 2
+[2026-07-23 23:40:46] Processing page 1/2
+[2026-07-23 23:40:47] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 23:40:54] Page 1 response status: 200
+[2026-07-23 23:40:54] Page 1 transcribed text length: 1536
+[2026-07-23 23:40:54] Processing page 2/2
+[2026-07-23 23:40:55] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 23:41:02] Page 2 response status: 200
+[2026-07-23 23:41:02] Page 2 transcribed text length: 1417
+[2026-07-23 23:47:05] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-23 23:47:05] Initialization success. Pages count: 2
+[2026-07-23 23:47:05] Processing page 1/2
+[2026-07-23 23:47:06] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-23 23:49:08] Page 1 response status: 200
+[2026-07-23 23:49:08] Page 1 transcribed text length: 1621
+[2026-07-23 23:49:08] Processing page 2/2
+[2026-07-23 23:49:09] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-23 23:50:52] Page 2 response status: 200
+[2026-07-23 23:50:52] Page 2 transcribed text length: 1743
+[2026-07-24 00:22:07] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-24 00:22:07] Initialization success. Pages count: 2
+[2026-07-24 00:22:07] Processing page 1/2
+[2026-07-24 00:22:08] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-24 00:22:45] Page 1 response status: 200
+[2026-07-24 00:22:45] Page 1 transcribed text length: 1547
+[2026-07-24 00:22:45] Processing page 2/2
+[2026-07-24 00:22:47] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-24 00:23:24] Page 2 response status: 200
+[2026-07-24 00:23:24] Page 2 transcribed text length: 1608
+[2026-07-24 00:34:16] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-24 00:34:16] Initialization success. Pages count: 2
+[2026-07-24 00:34:16] Processing page 1/2
+[2026-07-24 00:34:17] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-24 00:34:53] Page 1 response status: 200
+[2026-07-24 00:34:53] Page 1 transcribed text length: 1521
+[2026-07-24 00:34:53] Processing page 2/2
+[2026-07-24 00:34:54] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-24 00:35:30] Page 2 response status: 200
+[2026-07-24 00:35:30] Page 2 transcribed text length: 1556
+[2026-07-24 00:43:56] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-24 00:43:56] Initialization success. Pages count: 2
+[2026-07-24 00:43:56] Processing page 1/2
+[2026-07-24 00:43:57] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-24 00:44:33] Page 1 response status: 200
+[2026-07-24 00:44:33] Page 1 transcribed text length: 1604
+[2026-07-24 00:44:33] Processing page 2/2
+[2026-07-24 00:44:34] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-24 00:45:07] Page 2 response status: 200
+[2026-07-24 00:45:07] Page 2 transcribed text length: 1460
+[2026-07-24 00:56:37] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-24 00:56:37] Initialization success. Pages count: 2
+[2026-07-24 00:56:37] Processing page 1/2
+[2026-07-24 00:56:38] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-24 00:57:11] Page 1 response status: 200
+[2026-07-24 00:57:11] Page 1 transcribed text length: 1398
+[2026-07-24 00:57:11] Processing page 2/2
+[2026-07-24 00:57:12] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-24 00:57:48] Page 2 response status: 200
+[2026-07-24 00:57:48] Page 2 transcribed text length: 1551
+[2026-07-24 01:00:37] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-24 01:00:37] Initialization success. Pages count: 2
+[2026-07-24 01:00:37] Processing page 1/2
+[2026-07-24 01:00:38] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-24 01:01:12] Page 1 response status: 200
+[2026-07-24 01:01:12] Page 1 transcribed text length: 1446
+[2026-07-24 01:01:12] Processing page 2/2
+[2026-07-24 01:01:13] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-24 01:01:47] Page 2 response status: 200
+[2026-07-24 01:01:47] Page 2 transcribed text length: 1537
+[2026-07-24 01:05:28] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-24 01:05:28] Initialization success. Pages count: 2
+[2026-07-24 01:05:28] Processing page 1/2
+[2026-07-24 01:05:29] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-24 01:06:08] Page 1 response status: 200
+[2026-07-24 01:06:08] Page 1 transcribed text length: 1643
+[2026-07-24 01:06:08] Processing page 2/2
+[2026-07-24 01:06:09] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-24 01:06:43] Page 2 response status: 200
+[2026-07-24 01:06:43] Page 2 transcribed text length: 1537
+[2026-07-24 01:11:16] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-24 01:11:16] Initialization success. Pages count: 2
+[2026-07-24 01:11:16] Processing page 1/2
+[2026-07-24 01:11:17] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-24 01:11:55] Page 1 response status: 200
+[2026-07-24 01:11:55] Page 1 transcribed text length: 1598
+[2026-07-24 01:11:55] Processing page 2/2
+[2026-07-24 01:11:56] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-24 01:12:33] Page 2 response status: 200
+[2026-07-24 01:12:33] Page 2 transcribed text length: 1591
+[2026-07-24 01:15:23] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-24 01:15:23] Initialization success. Pages count: 2
+[2026-07-24 01:15:23] Processing page 1/2
+[2026-07-24 01:15:23] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-24 01:16:07] Page 1 response status: 200
+[2026-07-24 01:16:07] Page 1 transcribed text length: 1512
+[2026-07-24 01:16:07] Processing page 2/2
+[2026-07-24 01:16:08] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-24 01:16:49] Page 2 response status: 200
+[2026-07-24 01:16:49] Page 2 transcribed text length: 1500
+[2026-07-24 01:17:47] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-24 01:17:48] Initialization success. Pages count: 2
+[2026-07-24 01:17:48] Processing page 1/2
+[2026-07-24 01:17:49] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-24 01:18:32] Page 1 response status: 200
+[2026-07-24 01:18:32] Page 1 transcribed text length: 1512
+[2026-07-24 01:18:32] Processing page 2/2
+[2026-07-24 01:18:33] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-24 01:19:15] Page 2 response status: 200
+[2026-07-24 01:19:15] Page 2 transcribed text length: 1500
+[2026-07-24 01:21:39] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2.pdf (DPI: 300) ---
+[2026-07-24 01:21:39] Initialization success. Pages count: 2
+[2026-07-24 01:21:39] Processing page 1/2
+[2026-07-24 01:21:40] Sending page 1 VLM request (image base64 len: 2587020)
+[2026-07-24 01:22:18] Page 1 response status: 200
+[2026-07-24 01:22:18] Page 1 transcribed text length: 1552
+[2026-07-24 01:22:18] Processing page 2/2
+[2026-07-24 01:22:19] Sending page 2 VLM request (image base64 len: 2704144)
+[2026-07-24 01:22:53] Page 2 response status: 200
+[2026-07-24 01:22:53] Page 2 transcribed text length: 1459

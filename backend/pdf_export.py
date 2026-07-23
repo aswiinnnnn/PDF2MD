@@ -191,8 +191,27 @@ def markdown_to_html(markdown_text: str, image_mappings: dict) -> str:
                 padding: 0;
             }}
             @page {{
-                margin: 15mm 20mm;
+                margin: 20mm 20mm 20mm 20mm;
                 size: A4;
+                @top-left {{
+                    content: "RGU HUB";
+                    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                    font-size: 8pt;
+                    color: #64748b;
+                    font-weight: 600;
+                }}
+                @top-right {{
+                    content: "Visit rguhub.site for more study materials";
+                    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                    font-size: 8pt;
+                    color: #64748b;
+                }}
+                @bottom-center {{
+                    content: counter(page);
+                    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                    font-size: 8pt;
+                    color: #64748b;
+                }}
             }}
             .page-break {{
                 page-break-before: always;

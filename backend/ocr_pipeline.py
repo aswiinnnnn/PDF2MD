@@ -7,6 +7,25 @@ import fitz  # PyMuPDF
 SYSTEM_PROMPT_PATH = os.path.join(os.path.dirname(__file__), "prompts", "system_prompt.txt")
 USER_PROMPT_PATH = os.path.join(os.path.dirname(__file__), "prompts", "user_prompt.txt")
 
+def load_env():
+    env_path = os.path.join(os.path.dirname(__file__), ".env")
+    if os.path.exists(env_path):
+        with open(env_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    key, val = line.split("=", 1)
+                    os.environ[key.strip()] = val.strip().strip('"').strip("'")
+
+load_env()
+
+def get_selected_model():
+    provider = os.getenv("MODEL_PROVIDER", "qwen").lower()
+    if provider == "google":
+        return os.getenv("MODEL_GOOGLE", "gemma-3-4b-it-q4_k_m")
+    else:
+        return os.getenv("MODEL_QWEN", "qwen2-vl-7b-instruct")
+
 def get_prompts():
     with open(SYSTEM_PROMPT_PATH, "r", encoding="utf-8") as f:
         system_prompt = f.read()
@@ -63,7 +82,7 @@ async def run_ocr_pipeline(pdf_path: str, dpi: int = 300):
         
         # Call LM Studio API (local)
         payload = {
-            "model": "qwen2-vl-7b-instruct",  # Loaded model name or default
+            "model": get_selected_model(),
             "messages": [
                 {
                     "role": "system",
