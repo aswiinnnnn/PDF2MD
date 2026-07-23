@@ -1,77 +1,7 @@
 [
   {
-    "timestamp": "1:21:29 AM",
+    "timestamp": "1:30:15 AM",
     "message": "Workspace cleared on both backend and frontend.",
     "type": "info"
-  },
-  {
-    "timestamp": "1:21:38 AM",
-    "message": "Uploading intro 2 yr-1-2.pdf to backend...",
-    "type": "info"
-  },
-  {
-    "timestamp": "1:21:38 AM",
-    "message": "Uploaded intro 2 yr-1-2.pdf successfully. Ready for processing.",
-    "type": "info"
-  },
-  {
-    "timestamp": "1:21:39 AM",
-    "message": "Starting queue transcription for 1 document(s)...",
-    "type": "info"
-  },
-  {
-    "timestamp": "1:21:39 AM",
-    "message": "DPI configured to: 300",
-    "type": "info"
-  },
-  {
-    "timestamp": "1:21:39 AM",
-    "message": "[File 1/1] Starting OCR for: intro 2 yr-1-2.pdf",
-    "type": "warning"
-  },
-  {
-    "timestamp": "1:21:39 AM",
-    "message": "Connected to OCR engine for intro 2 yr-1-2.pdf...",
-    "type": "info"
-  },
-  {
-    "timestamp": "1:22:18 AM",
-    "message": "Transcribed page 1 of 2 for intro 2 yr-1-2.pdf...",
-    "type": "info"
-  },
-  {
-    "timestamp": "1:22:53 AM",
-    "message": "Transcribed page 2 of 2 for intro 2 yr-1-2.pdf...",
-    "type": "info"
-  },
-  {
-    "timestamp": "1:22:53 AM",
-    "message": "Queue processing completed. 0 of 1 files succeeded. Check log for details.",
-    "type": "warning"
-  },
-  {
-    "timestamp": "1:22:53 AM",
-    "message": "Transcribed intro 2 yr-1-2.pdf successfully!",
-    "type": "success"
-  },
-  {
-    "timestamp": "1:22:53 AM",
-    "message": "Transcribed intro 2 yr-1-2.pdf successfully!",
-    "type": "success"
-  },
-  {
-    "timestamp": "1:23:08 AM",
-    "message": "Starting queue transcription for 1 document(s)...",
-    "type": "info"
-  },
-  {
-    "timestamp": "1:23:08 AM",
-    "message": "DPI configured to: 300",
-    "type": "info"
-  },
-  {
-    "timestamp": "1:23:08 AM",
-    "message": "All files in the queue have been processed successfully!",
-    "type": "success"
   }
 ]
