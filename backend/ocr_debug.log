@@ -294,3 +294,13 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 [2026-07-24 01:22:19] Sending page 2 VLM request (image base64 len: 2704144)
 [2026-07-24 01:22:53] Page 2 response status: 200
 [2026-07-24 01:22:53] Page 2 transcribed text length: 1459
+[2026-07-24 01:31:05] --- Pipeline Start: D:\PDF2MD\backend\temp\uploads\intro 2 yr-1-2_clean (7).pdf (DPI: 300) ---
+[2026-07-24 01:31:05] Initialization success. Pages count: 2
+[2026-07-24 01:31:05] Processing page 1/2
+[2026-07-24 01:31:05] Sending page 1 VLM request (image base64 len: 463708)
+[2026-07-24 01:31:48] Page 1 response status: 200
+[2026-07-24 01:31:48] Page 1 transcribed text length: 1393
+[2026-07-24 01:31:48] Processing page 2/2
+[2026-07-24 01:31:48] Sending page 2 VLM request (image base64 len: 490784)
+[2026-07-24 01:32:33] Page 2 response status: 200
+[2026-07-24 01:32:33] Page 2 transcribed text length: 1544

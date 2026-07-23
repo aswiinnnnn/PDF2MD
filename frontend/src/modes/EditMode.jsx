@@ -3,6 +3,11 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { FileText, Image as ImageIcon, Upload, Trash2, Maximize, FileDown, AlertCircle } from 'lucide-react';
 
+const getBackendUrl = (path) => {
+  const host = window.location.hostname;
+  return `http://${host}:8000${path}`;
+};
+
 function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) {
   const [exporting, setExporting] = useState(false);
   const [error, setError] = useState(null);
@@ -26,7 +31,7 @@ function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) 
     
     const delayDebounce = setTimeout(async () => {
       try {
-        await fetch('http://localhost:8000/api/save-document', {
+        await fetch(getBackendUrl('/api/save-document'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -110,7 +115,7 @@ function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) 
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:8000/api/upload-image', {
+      const response = await fetch(getBackendUrl('/api/upload-image'), {
         method: 'POST',
         body: formData,
       });
@@ -167,7 +172,7 @@ function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) 
     setExporting(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:8000/api/export-pdf', {
+      const response = await fetch(getBackendUrl('/api/export-pdf'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -308,21 +313,18 @@ function EditMode({ documents, setDocuments, activeDocName, setActiveDocName }) 
           {activeDocName && (
             <button
               onClick={async () => {
-                if (window.confirm("Are you sure you want to clear the entire workspace (all documents, images, and raw PDFs) from both frontend and backend?")) {
-                  try {
-                    const res = await fetch('http://localhost:8000/api/clear-data', {
-                      method: 'POST'
-                    });
-                    if (res.ok) {
-                      setDocuments({});
-                      setActiveDocName('');
-                      alert('Workspace cleared.');
-                    } else {
-                      throw new Error('Failed to clear backend workspace data.');
-                    }
-                  } catch (err) {
-                    alert('Clear error: ' + err.message);
+                try {
+                  const res = await fetch(getBackendUrl('/api/clear-data'), {
+                    method: 'POST'
+                  });
+                  if (res.ok) {
+                    setDocuments({});
+                    setActiveDocName('');
+                  } else {
+                    throw new Error('Failed to clear backend workspace data.');
                   }
+                } catch (err) {
+                  alert('Clear error: ' + err.message);
                 }
               }}
               className="bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-xs font-semibold py-2 px-4 rounded-lg transition-colors"

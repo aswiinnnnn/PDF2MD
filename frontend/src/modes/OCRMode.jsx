@@ -1,6 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Upload, Play, AlertCircle, FileText, ArrowRight, CheckCircle2, RotateCcw, Trash2, ListOrdered } from 'lucide-react';
 
+const getBackendUrl = (path) => {
+  const host = window.location.hostname;
+  return `http://${host}:8000${path}`;
+};
+
 function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
   const [queue, setQueue] = useState([]);
   const [dpi, setDpi] = useState(300);
@@ -22,7 +27,7 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/workspace-status');
+        const response = await fetch(getBackendUrl('/api/workspace-status'));
         if (response.ok) {
           const data = await response.json();
           const loadedQueue = data.queue.map(item => ({
@@ -67,7 +72,7 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
           formData.append('file', file);
 
           try {
-            const res = await fetch('http://localhost:8000/api/upload-pdf', {
+            const res = await fetch(getBackendUrl('/api/upload-pdf'), {
               method: 'POST',
               body: formData,
             });
@@ -104,28 +109,26 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
 
   const clearQueue = async () => {
     if (loading) return;
-    if (window.confirm("Are you sure you want to clear all documents from both backend and frontend?")) {
-      try {
-        const res = await fetch('http://localhost:8000/api/clear-data', {
-          method: 'POST',
-        });
-        if (res.ok) {
-          setQueue([]);
-          setLogs([]);
-          setError(null);
-          setSuccess(false);
-          setProgress({ page: 0, total: 0 });
-          setCurrentFileIdx(null);
-          setDocuments({});
-          setActiveDocName('');
-          addLog('Workspace cleared on both backend and frontend.');
-        } else {
-          throw new Error('Failed to clear backend workspace data.');
-        }
-      } catch (err) {
-        setError(err.message);
-        addLog(`Clear error: ${err.message}`, 'error');
+    try {
+      const res = await fetch(getBackendUrl('/api/clear-data'), {
+        method: 'POST',
+      });
+      if (res.ok) {
+        setQueue([]);
+        setLogs([]);
+        setError(null);
+        setSuccess(false);
+        setProgress({ page: 0, total: 0 });
+        setCurrentFileIdx(null);
+        setDocuments({});
+        setActiveDocName('');
+        addLog('Workspace cleared on both backend and frontend.');
+      } else {
+        throw new Error('Failed to clear backend workspace data.');
       }
+    } catch (err) {
+      setError(err.message);
+      addLog(`Clear error: ${err.message}`, 'error');
     }
   };
 
@@ -133,7 +136,7 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
     const timestamp = new Date().toLocaleTimeString();
     setLogs((prev) => [...prev, { timestamp, message, type }]);
     try {
-      await fetch('http://localhost:8000/api/save-log', {
+      await fetch(getBackendUrl('/api/save-log'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message, type, timestamp })
@@ -182,7 +185,7 @@ function OCRMode({ documents, setDocuments, setActiveDocName, onComplete }) {
       formData.append('dpi', dpi.toString());
 
       try {
-        const response = await fetch('http://localhost:8000/api/ocr', {
+        const response = await fetch(getBackendUrl('/api/ocr'), {
           method: 'POST',
           body: formData,
         });

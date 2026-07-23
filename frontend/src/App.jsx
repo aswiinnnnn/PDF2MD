@@ -3,6 +3,11 @@ import { Sparkles, FileEdit, Cpu } from 'lucide-react';
 import OCRMode from './modes/OCRMode';
 import EditMode from './modes/EditMode';
 
+const getBackendUrl = (path) => {
+  const host = window.location.hostname;
+  return `http://${host}:8000${path}`;
+};
+
 function App() {
   const [activeMode, setActiveMode] = useState('ocr'); // 'ocr' or 'edit'
   const [documents, setDocuments] = useState({}); // { filename: { markdown: '', imageMappings: {} } }
@@ -11,7 +16,7 @@ function App() {
   useEffect(() => {
     const fetchDocs = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/documents');
+        const response = await fetch(getBackendUrl('/api/documents'));
         if (response.ok) {
           const data = await response.json();
           setDocuments(data);
